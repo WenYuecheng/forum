@@ -1,0 +1,44 @@
+# application.yml
+# Spring 全局配置 
+spring:
+  application:
+    name: ⽐特论坛 # 项⽬名
+  output:
+    ansi:
+      enabled: ALWAYS # 控制台输出彩⾊⽇志
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/db_forum?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:your_password_here}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # JSON序列化配置
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss # ⽇期格式
+    default-property-inclusion: NON_NULL # 不为null时序列化
+  
+# 服务器配置 
+#server:
+#  port: 8080 # 指定端⼝号
+
+# ⽇志配置 
+logging:
+  pattern:
+    dateformat: HH:mm:ss
+  level:
+    root: info # 默认⽇志级别
+    com.bitejiuyeke.forum: debug # 指定包的⽇志级别
+  file:
+#    path: D:\code\java\forum # ⽇志保存⽬录
+      path: /log
+
+# mybatis 相关配置，单独配置，顶格写
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml # 指定 xxxMapper.xml的扫描路径
+
+# 项⽬⾃定义相关配置
+bit-forum:
+  login:
+    url: sign-in.html # 未登录状况下强制跳转⻚⾯
+
+  index: # ⾸⻚配置节点
+    board-num: 9 # ⾸⻚中显⽰的版块个数
